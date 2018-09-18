@@ -17,7 +17,7 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255),unique=True,index = True)
     username = db.Column(db.String(255),index = True)
     password_secure = db.Column(db.String(255))
-    phone_number = db.Column(db.Integer(10))
+    phone_number = db.Column(db.Integer)
     role = db.Column(db.String(255),db.ForeignKey('roles.role'))
 
 
@@ -48,7 +48,7 @@ class Sacco(UserMixin,db.Model):
     email = db.Column(db.String(255),unique=True,index = True)
     sacconame = db.Column(db.String(255),index = True)
     password_secure = db.Column(db.String(255))
-    phone_number = db.Column(db.Integer(10))
+    phone_number = db.Column(db.Integer)
     route = db.Column(db.String(255))
     fares = db.relationship('Fares',backref='fare',lazy="dynamic")
 
@@ -76,7 +76,7 @@ class Sacco(UserMixin,db.Model):
     class Fares(db.Model):
         __tablename__='fares'
         id = db.Column(db.Integer,primary_key=True)
-        fare = db.Column(db.Integer(5))
-        sacco_id = db.Column(db.ForeignKey(sacco.id))
+        fare = db.Column(db.Integer)
+        sacco_id = db.Column(db.ForeignKey('sacco.id'))
 
         
