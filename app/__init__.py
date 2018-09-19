@@ -4,7 +4,10 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from AfricasTalkingGateway import AfricasTalkingGateway,AfricasTalkingGatewayException
 
+africastalkinggateway = AfricasTalkingGateway()
+africastalkinggatewayexception = AfricasTalkingGatewayException()
 migrate = Migrate()
 db = SQLAlchemy()
 bootstrap = Bootstrap()
@@ -18,6 +21,8 @@ def create_app(config_name):
 
     #initialising flask extensions
     bootstrap.init_app(app)
+    africastalkinggatewayexception.init_app(app)
+    africastalkinggateway.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app,db)
