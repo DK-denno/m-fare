@@ -7,7 +7,7 @@ class Roles(UserMixin,db.Model):
 
     id = db.Column(db.Integer,primary_key=True)
     role = db.Column(db.String(255))
-    user = db.relationship('User',backref='user',lazy="dynamic")
+    user = db.relationship('User',backref='users',lazy="dynamic")
 
 
 class User(UserMixin,db.Model):
@@ -73,10 +73,10 @@ class Sacco(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.password_secure,password)
     
-    class Fares(db.Model):
-        __tablename__='fares'
-        id = db.Column(db.Integer,primary_key=True)
-        fare = db.Column(db.Integer)
-        sacco_id = db.Column(db.ForeignKey('sacco.id'))
+class Fares(db.Model):
+    __tablename__='fares'
+    id = db.Column(db.Integer,primary_key=True)
+    fare = db.Column(db.Integer)
+    sacco_id = db.Column(db.ForeignKey('sacco.id'))
 
         
