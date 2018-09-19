@@ -4,10 +4,10 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
-from AfricasTalkingGateway import AfricasTalkingGateway,AfricasTalkingGatewayException
+# from AfricasTalkingGateway import AfricasTalkingGateway,AfricasTalkingGatewayException
 
-africastalkinggateway = AfricasTalkingGateway()
-africastalkinggatewayexception = AfricasTalkingGatewayException()
+# africastalkinggateway = AfricasTalkingGateway()
+# africastalkinggatewayexception = AfricasTalkingGatewayException()
 migrate = Migrate()
 db = SQLAlchemy()
 bootstrap = Bootstrap()
@@ -32,5 +32,7 @@ def create_app(config_name):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    from .admin_auth import admin_auth as admin_auth_blueprint
+    app.register_blueprint(admin_auth_blueprint, url_prefix='/admin_auth')
     
     return app
