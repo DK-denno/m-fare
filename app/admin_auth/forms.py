@@ -17,8 +17,8 @@ class RegistrationForm(FlaskForm):
     registration form class for creation of input fields
 
     """
-    email = StringField('Input Email Address', validators=[Required(), Email()])
     username = StringField('Input username', validators=[Required()])
+    email = StringField('Input Email Address', validators=[Required(), Email()])
     password = PasswordField('Password',validators=[Required(), EqualTo('password', message='Passwords must match')])
     password_second = PasswordField('Confirm password', validators=[Required()])
     submit = SubmitField('SIGN UP')

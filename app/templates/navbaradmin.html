@@ -12,20 +12,6 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 375px;">
-        {% comment %} <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{url_for('main.lifestyle')}}"><span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{url_for('main.business')}}">BUSINESS <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{url_for('main.entertainment')}}">ENTERTAINMENT <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{url_for('main.culture')}}">CULTURE<span class="sr-only">(current)</span></a>
-          </li>
-        </ul> {% endcomment %}
 
         <!--Sing Up and Sing In-->
         <ul class="nav navbar-nav navbar-right">
@@ -35,11 +21,11 @@
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="{{url_for('main.profile',uname=current_user.username)}}">PROFILE</a></li>
-            <li class="nav-item active"><a class="nav-link" href="{{url_for('auth.logout')}}">Sign Out</a></li>
+            <li class="nav-item active"><a class="nav-link" href="{{url_for('admin_auth.logout')}}">Sign Out</a></li>
           {% else %}
           &nbsp;
           &nbsp;
-          <li class="nav-item active"><a class="nav-link" href="{{url_for('auth.login')}}">ADMIN</a></li>
+          <li class="nav-item active"><a class="nav-link" href="{{url_for('admin_auth.login')}}">ADMIN</a></li>
           {%endif%}
         </ul>
       </div>
