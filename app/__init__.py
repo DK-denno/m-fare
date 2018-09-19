@@ -27,5 +27,7 @@ def create_app(config_name):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    from .admin_auth import auth_admin as auth_admin_blueprint
+    app.register_bluerpint(admin_auth_blueprint)
     
     return app
