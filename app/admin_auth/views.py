@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, request, flash
 from . import admin_auth
 from flask_login import login_user, login_required, logout_user
 # imoort user model
-from ..models import User
+from ..models import Admin
 from .forms import RegistrationForm, LoginForm
 from .. import db
 
@@ -17,12 +17,12 @@ def login():
         """
         checking form validation
         """
-        user=User.query.filter_by(email = login_form.email.data).first()
+        admin=Admin.query.filter_by(email = login_form.email.data).first()
         """
         searching for user in database with email received from form
         """
-        if user is not None and user.verify_password(login_form.password.data):
-            login_user(user, login_form.remember.data)
+        if admin is not None and admin.verify_password(login_form.password.data):
+            login_user(admin, login_form.remember.data)
             return redirect(request.args.get('next') or url_for('admin_auth.admindashboard'))
 
         flash('Invalid username or Password')
@@ -40,9 +40,9 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
 
-        user = User(username=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
+        admin = Admin(username=form.username.data, email=form.email.data)
+        admin.set_password(form.password.data)
+        db.session.add(admin)
         db.session.commit()
 
         title = "Welcome Admin"
