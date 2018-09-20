@@ -55,7 +55,7 @@ class User(UserMixin,db.Model):
 
     # call  back function retrieving writer id
     @login_manager.user_loader
-    def load_writer(self,user_id):
+    def load_user(user_id):
         return User.query.get(int(user_id))
 
     @classmethod
@@ -90,7 +90,7 @@ class Sacco(UserMixin,db.Model):
     phone_number = db.Column(db.Integer)
     route = db.Column(db.String(255))
     roles_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    fares = db.relationship('Fares',backref='fare',lazy="dynamic")
+    fares = db.relationship('Fares',backref='faress',lazy="dynamic")
 
     @classmethod
     def save_sacco(self):

@@ -14,6 +14,7 @@ bootstrap = Bootstrap()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
+login_manager.login_view = 'user_auth.login'
 
 
 def create_app(config_name):
@@ -21,8 +22,8 @@ def create_app(config_name):
 
     #initialising flask extensions
     bootstrap.init_app(app)
-    africastalkinggatewayexception.init_app(app)
-    africastalkinggateway.init_app(app)
+    # africastalkinggatewayexception.init_app(app)
+    # africastalkinggateway.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app,db)
@@ -34,5 +35,14 @@ def create_app(config_name):
 
     from .admin_auth import admin_auth as admin_auth_blueprint
     app.register_blueprint(admin_auth_blueprint, url_prefix='/admin_auth')
+
+    from .sacco_auth import sacco_auth as sacco_auth_blueprint
+    app.register_blueprint(sacco_auth_blueprint,url_prefix='/sacco_auth')
+
+    from .user_auth import user_auth as user_auth_blueprint
+    app.register_blueprint(user_auth_blueprint,url_prefix = '/user_auth')
     
+    from .urls import urls as urls_blueprint
+    app.register_blueprint(urls_blueprint,url_prefix='/africas-talking')
+
     return app
