@@ -1,48 +1,59 @@
 from . import urls
-from flask import redirect, url_for
+import africastalking
+from flask import redirect, url_for,render_template
 from .AfricasTalkingGateway import AfricasTalkingGateway, AfricasTalkingGatewayException
 # import urllib2
+from .forms import Saccotext
+from ..models import User
 
 
-@urls.route('/url')
+@urls.route('/url',methods=['GET','POST'])
 def africa_talking():
-    # Specify your login credentials
-    username = "mfare"
-    apiKey = "9e2800c8091653946a0a49a50a9db4ca9c0788e0558f7ac266c5da0fecb42703"
-    # username = "sandbox"
-    # apikey = "54a2cd06ea9b6118b691567a856ab4b92eeb3621e1b753e5f26815c967f44072"
-    # Specify the numbers that you want to send to in a comma-separated list
-    # Please ensure you include the country code (+254 for Kenya)
+    saccotext = Saccotext()
+    if saccotext.validate_on_submit():
 
-    to = "+254725328016"
-    # And of course we want our recipients to know what we really do
+        users = User.query.all()
+        print (users)
+        
+        
+        # Specify your login credentials
+        username ="m-fare"
+        apiKey ="f6700eb3be26fd6dddf806920a93d98ff6dc14df98db4033a06a1aaea5434f70"
+        # username = "sandbox"
+        # apikey = "54a2cd06ea9b6118b691567a856ab4b92eeb3621e1b753e5f26815c967f44072"
+        # Specify the numbers that you want to send to in a comma-separated list
+        # Please ensure you include the country code (+254 for Kenya)
 
-    message = "random txt"
-    # Create a new instance of our awesome gateway class
-    gateway = AfricasTalkingGateway(username, apiKey)
-    # *************************************************************************************
-    #  NOTE: If connecting to the sandbox:
-    #
-    #  1. Use "sandbox" as the username
-    #  2. Use the apiKey generated from your sandbox application
-    #     https://account.africastalking.com/apps/sandbox/settings/key
-    #  3. Add the "sandbox" flag to the constructor
-    #
-    #  gateway = AfricasTalkingGateway(username, apiKey, "sandbox");
-    # **************************************************************************************
-    # Any gateway errors will be captured by our custom Exception class below,
-    # so wrap the call in a try-catch block
-    try:
-        # Thats it, hit send and we'll take care of the rest.
+        to = '+254725328016'
+        # And of course we want our recipients to know what we really do
 
-        results = gateway.sendMessage(to, message)
-        print(results)
+        message = saccotext.text.data
+        # Create a new instance of our awesome gateway class
+        gateway = AfricasTalkingGateway(username, apiKey)
+        # *************************************************************************************
+        #  NOTE: If connecting to the sandbox:
+        #
+        #  1. Use "sandbox" as the username
+        #  2. Use the apiKey generated from your sandbox application
+        #     https://account.africastalking.com/apps/sandbox/settings/key
+        #  3. Add the "sandbox" flag to the constructor
+        #
+        #  gateway = AfricasTalkingGateway(username, apiKey, "sandbox");
+        # **************************************************************************************
+        # Any gateway errors will be captured by our custom Exception class below,
+        # so wrap the call in a try-catch block
+        try:
+            # Thats it, hit send and we'll take care of the rest.
 
-        for recipient in results:
-            # status is either "Success" or "error message"
-            print('number= %s;status= %s;statusCode= %s;messageId= %s;cost= %s' % (
-                recipient['number'], recipient['status'], recipient['statusCode'], recipient['messageId'], recipient['cost']))
-    except AfricasTalkingGatewayException as e:
-        print('Encountered an error while sending: %s' % str(e))
+            results = gateway.sendMessage(to, message)
+            print(results)
 
-    return redirect(url_for('main.index'))
+            for recipient in results:
+                # status is either "Success" or "error message"
+                print('number= %s;status= %s;statusCode= %s;messageId= %s;cost= %s' % (
+                    recipient['number'], recipient['status'], recipient['statusCode'], recipient['messageId'], recipient['cost']))
+        except AfricasTalkingGatewayException as e:
+            print('Encountered an error while sending: %s' % str(e))
+
+        return redirect(url_for('main.index'))
+    return render_template('sms.html',saccotext=saccotext)
