@@ -58,7 +58,7 @@ class User(UserMixin,db.Model):
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    @classmethod
+   
     def save_user(self):
        db.session.add(self)
        db.session.commit()
@@ -92,7 +92,7 @@ class Sacco(UserMixin,db.Model):
     roles_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     fares = db.relationship('Fares',backref='faress',lazy="dynamic")
 
-    @classmethod
+ 
     def save_sacco(self):
        db.session.add(self)
        db.session.commit()
