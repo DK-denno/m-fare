@@ -5,31 +5,43 @@
     <title>Title</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{{url_for('main.index')}}">M-FARE</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg" style="background-color: #87ceeb;">
+        <a class="navbar-brand" href="{{url_for('main.index')}}"style="color:black;">M-FARE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
         <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 375px;">
-
-        <!--Sing Up and Sing In-->
-        <ul class="nav navbar-nav navbar-right">
-          {% if current_user.is_authenticated %}
-          <li class="nav-item active">
-            <a class="nav-link" href="{{url_for('main.post')}}">NEW POST <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{url_for('main.profile',uname=current_user.username)}}">PROFILE</a></li>
-            <li class="nav-item active"><a class="nav-link" href="{{url_for('admin_auth.logout')}}">Sign Out</a></li>
-          {% else %}
-          &nbsp;
-          &nbsp;
-          <li class="nav-item active"><a class="nav-link" href="{{url_for('admin_auth.login')}}">ADMIN</a></li>
-          {%endif%}
-        </ul>
+        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#" style="color:black;">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"style="color:black;">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color:black;">Pricing</a>
+            </li>
+          </ul>
+          <!--Sing Up and Sing In-->
+            <ul class="nav navbar-nav navbar-right">
+              {% if current_user.is_authenticated %}
+              <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('main.post')}}">NEW POST <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('main.profile',uname=current_user.username)}}">PROFILE</a></li>
+                <li class="nav-item active"><a class="nav-link" href="{{url_for('admin_auth.logout')}}">Sign Out</a></li>
+              {% else %}
+              &nbsp;
+              &nbsp;
+              <li class="nav-item active"><a class="nav-link" href="{{url_for('admin_auth.login')}}"style="color:black;">ADMIN</a></li>
+              {%endif%}
+            </ul>
+        </div>
       </div>
     </nav>
-
 </body>
 </html>

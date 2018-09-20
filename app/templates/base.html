@@ -12,17 +12,30 @@
     </head>
     <body>
         <!-- Content block -->
+         {% block navbar %}
+            <!--include control block to include navbar.html file-->
+            {% include 'navbaradmin.html' %}
+        {% endblock %}
+
 
         {% block content %}
+
+
+
+
+        {% block footer %}
+
+            {% include 'footer.html' %}
+
+        {% endblock %}
+
+
+
 
         {% endblock%}
 
         <!-- Navbar block  -->
 
-        {% block navbar %}
-            <!--include control block to include navbar.html file-->
-            {% include 'navbaradmin.html' %}
-        {% endblock %}
-
-    </body>
+           </body>
+    
 </html>
