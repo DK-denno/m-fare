@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    {% for sac in saccos %}
+    <br>
+    <br>
+    <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+            <div class="card-header"> {{sac.sacconame}}  </div>
+            <div class="card-body">
+              <h4 class="card-title">{{sac.email}}</h4>
+              <p class="card-text"><a href="/sacco_auth/sacco/dashboard/{{sac.sacconame}}">dashboard</a></p>
+            </div>
+    {% endfor %}
+</div>
+{% endblock %}

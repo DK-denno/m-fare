@@ -7,7 +7,7 @@
 
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../static/css/sacco_dash.css" />
+    <link rel="stylesheet" href="/static/css/sacco_dash.css" />
 </head>
 {% extends 'base.html'%}
 
@@ -71,88 +71,27 @@
             </ul>
         </nav>
     </div>
-    <div class="container main-content jumbotron">
+    <div class="container main-content jumbotron" style="margin-left: 180px;">
         <div class="container first">
-            <div class="row">
-                <div class="col-md-6">
+            <div>
+                <div>
                     <div class="card">
                         <div class="card-header">
-                            <h5>My Routes</h5>
+                            <h5>Our Routes</h5>
                         </div>
                         <div class="card-body">
                             <ul>
                                 {% for saco in sac %}
-                                <li>{{saco}}</li>
+                                <li style="list-style: none;">{{saco}} <br><button class="btn btn-success">PAY: 600/=</button></li>
                                 {% endfor %}
                             </ul>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Product Name</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select Category</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                          <option>Electronics</option>
-                                          <option>Beauty</option>
-                                          <option>Kitchen</option>
-                                          <option>Home and Living</option>
-                                          <option>Baby, Kids and Toys</option>
-                                          <option>Fashion</option>
-                                        </select>
-                            </div>
-                        </div>
+                        <a href="{{url_for('urls.africa_talking')}}"><button>SEND TEXTS</button></a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="container second">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card description">
-                        <div class="card-header">
-                            <h5>Product Description</h5>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="form-group ">
-                                <label for="exampleFormControlTextarea1"> Add Product Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card image">
-                        <div class="card-header">
-                            <h5>Product Image</h5>
-                        </div>
-                        <div class="card-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="exampleFormControlFile1">Example file input</label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                </div>
-                            </form>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
         </div>
-        <button type="submit" class="btn btn-info">Add Product</button>
-
     </div>
     {% endblock %}
 

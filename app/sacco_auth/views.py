@@ -13,7 +13,7 @@ def login():
         sacco = Sacco.query.filter_by(email = sacco_login_form.email.data).first()
         if sacco is not None and sacco.verify_password(sacco_login_form.password.data):
             login_user(sacco,sacco_login_form.remember.data)
-            return redirect(request.args.get('next') or url_for('main.index'))
+            return redirect(request.args.get('next') or url_for('sacco_auth.dashboard',sacconame=sacco.sacconame))
 
         flash('Invalid Email or Password')
 
