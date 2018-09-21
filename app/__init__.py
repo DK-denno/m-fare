@@ -25,14 +25,21 @@ def create_app(config_name):
     # africastalkinggatewayexception.init_app(app)
     # africastalkinggateway.init_app(app)
     db.init_app(app)
+
+
+    login_manager.init_app(app)
+
+   
+
     login_manager.init_app(app)
     migrate.init_app(app,db)
+
     app.config.from_object(config_options[config_name])
     app.config.from_object(Config)
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
-
+   
     from .admin_auth import admin_auth as admin_auth_blueprint
     app.register_blueprint(admin_auth_blueprint, url_prefix='/admin_auth')
 

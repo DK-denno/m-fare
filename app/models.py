@@ -78,8 +78,8 @@ class User(UserMixin,db.Model):
     def verify_password(self,password):
        return check_password_hash(self.password_secure,password)
 
-class Sacco(UserMixin,db.Model):
 
+class Sacco(UserMixin,db.Model):
 
     __tablename__ = 'sacco'
 
@@ -88,11 +88,12 @@ class Sacco(UserMixin,db.Model):
     sacconame = db.Column(db.String(255),index = True)
     password_secure = db.Column(db.String(255))
     phone_number = db.Column(db.Integer)
-    route = db.Column(db.String(255))
+    route = db.Column(db.String(10000))
     roles_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     fares = db.relationship('Fares',backref='faress',lazy="dynamic")
 
- 
+
+
     def save_sacco(self):
        db.session.add(self)
        db.session.commit()
@@ -100,6 +101,12 @@ class Sacco(UserMixin,db.Model):
     def delete_sacco(cls,id):
        db.session.delete(id)
        db.session.commit()
+
+
+    def get_routes(sacconame):
+        sacco = Sacco.query.filter_by(sacconame = sacconame).first()
+        return sacco
+
 
     @property
     def password(self):
