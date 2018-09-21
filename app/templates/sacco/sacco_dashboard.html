@@ -1,0 +1,161 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/sacco_dash.css" />
+</head>
+{% extends 'base.html'%}
+
+<body>
+
+    {% block content %}
+
+    <div class="header">
+        <!-- <div class="logo">
+            <i class="fa fa-tachometer"></i>
+            <span>Brand</span>
+        </div> -->
+        <a href="#" class="nav-trigger"><span></span></a>
+    </div>
+    <div class="side-nav">
+        <div class="logo">
+            <i class="fa fa-tachometer"></i>
+            <span>M-Fare</span>
+        </div>
+        <br>
+        <br>
+        <nav>
+            <ul>
+                <li class="active">
+                    <a href="#">
+                        <span><i class="fa fa-user"></i></span>
+                        <span>New Route</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span><i class="fa fa-envelope"></i></span>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span><i class="fa fa-envelope"></i></span>
+                        <span>Messages</span>
+                    </a>
+
+                </li>
+                <li class="">
+                    <a href="#">
+                        <span><i class="fa fa-bar-chart"></i></span>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span><i class="fa fa-credit-card-alt"></i></span>
+                        <span>Payments</span>
+                    </a>
+                </li><br><br>
+                <li>
+                    <a href="index.html">
+                        <span><i class="fa fa-home"></i></span>
+                        <span>Dashboard HOME</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container main-content jumbotron">
+        <div class="container first">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>My Routes</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                {% for saco in sac %}
+                                <li>{{saco}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Product Name</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Select Category</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                          <option>Electronics</option>
+                                          <option>Beauty</option>
+                                          <option>Kitchen</option>
+                                          <option>Home and Living</option>
+                                          <option>Baby, Kids and Toys</option>
+                                          <option>Fashion</option>
+                                        </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container second">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card description">
+                        <div class="card-header">
+                            <h5>Product Description</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form-group ">
+                                <label for="exampleFormControlTextarea1"> Add Product Description</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card image">
+                        <div class="card-header">
+                            <h5>Product Image</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Example file input</label>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-info">Add Product</button>
+
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>

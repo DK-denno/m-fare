@@ -78,9 +78,19 @@ class User(UserMixin,db.Model):
     def verify_password(self,password):
        return check_password_hash(self.password_secure,password)
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+class Sacco(db.Model):
+=======
 class Sacco(UserMixin,db.Model):
 
 
+>>>>>>> 45084bb09f27ced6d6ae9e0526d807e29b88f6ee
+=======
+class Sacco(UserMixin,db.Model):
+
+
+>>>>>>> 45084bb09f27ced6d6ae9e0526d807e29b88f6ee
     __tablename__ = 'sacco'
 
     id = db.Column(db.Integer,primary_key=True)
@@ -88,11 +98,24 @@ class Sacco(UserMixin,db.Model):
     sacconame = db.Column(db.String(255),index = True)
     password_secure = db.Column(db.String(255))
     phone_number = db.Column(db.Integer)
+<<<<<<< HEAD
+<<<<<<< HEAD
+    route = db.Column(db.String(10000))
+    roles_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    fares = db.relationship('Fares',backref='faress',lazy="dynamic")
+
+=======
+=======
+>>>>>>> 45084bb09f27ced6d6ae9e0526d807e29b88f6ee
     route = db.Column(db.String(255))
     roles_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     fares = db.relationship('Fares',backref='faress',lazy="dynamic")
 
  
+<<<<<<< HEAD
+>>>>>>> 45084bb09f27ced6d6ae9e0526d807e29b88f6ee
+=======
+>>>>>>> 45084bb09f27ced6d6ae9e0526d807e29b88f6ee
     def save_sacco(self):
        db.session.add(self)
        db.session.commit()
@@ -100,6 +123,16 @@ class Sacco(UserMixin,db.Model):
     def delete_sacco(cls,id):
        db.session.delete(id)
        db.session.commit()
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+    def get_routes(sacconame):
+        sacco = Sacco.query.filter_by(sacconame = sacconame).first()
+        return sacco
+=======
+>>>>>>> 45084bb09f27ced6d6ae9e0526d807e29b88f6ee
+=======
+>>>>>>> 45084bb09f27ced6d6ae9e0526d807e29b88f6ee
 
     @property
     def password(self):
@@ -121,4 +154,12 @@ class Fares(db.Model):
 
     def save_fare(self):
        db.session.add(self)
+<<<<<<< HEAD
+<<<<<<< HEAD
        db.session.commit()
+=======
+       db.session.commit()
+>>>>>>> 45084bb09f27ced6d6ae9e0526d807e29b88f6ee
+=======
+       db.session.commit()
+>>>>>>> 45084bb09f27ced6d6ae9e0526d807e29b88f6ee

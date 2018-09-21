@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{% block content %}
+
+        <div class="col-md-6 offset-md-6">
+            <div class="jumbotron">
+
+                {{wtf.quick_form(sacco_reg_form)}}
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock%}
