@@ -14,7 +14,7 @@ def africa_talking():
 
         users = User.query.all()
         print (users)
-        usersNo. = users.phone_number
+        usersNo = users.phone_number
         
         
         # Specify your login credentials
